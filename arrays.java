@@ -1,55 +1,77 @@
+import java.util.Scanner;
 
 public class arrays {
+    //for optimal
+    static int secondLargest(int a[],int n){
+        int largest=a[0];
+        int slargest=Integer.MIN_VALUE;//we can also take -1 if array doesnt contain negative no
+        for(int i=1;i<n;i++){
+            if(a[i]>largest){
+                slargest=largest;
+                largest=a[i];
+            }
+            else if(a[i]<largest && a[i]>slargest){
+                slargest=a[i];
+            }
+        }
+        return slargest;
+    }
+    static int secondSmallest(int a[],int n){
+        int smallest=a[0];
+        int ssmallest=Integer.MAX_VALUE;
+        for(int i=1;i<n;i++){
+            if(a[i]<smallest){
+                ssmallest=smallest;
+                smallest=a[i];
+            }
+            else if(a[i]!=smallest && a[i]<ssmallest){
+                ssmallest=a[i];
+            }
+        }
+        return ssmallest;
+    }
     public static void main(String[] args) {
-        /*int marks[]= new int[5];  //declaration and memory allocation
-        marks[0] = 100;  //initialization
-       marks[1] =23;
-       marks[2] =45;
-       marks[3] =67;
-       marks[4] =89;*/
-       /*int marks[]= {100,23,45,67,89}; //declaration memory allocation and initialization
-       System.out.println(marks[4]);
-       System.out.println(marks.length);*/
-      /*  String students[] ={"mansi","khushi","aveek"};
-       System.out.println(students.length);*/
-                          
-                       //DISPLAYING A 1-D ARRAY
-    /*int marks[]= {100,23,45,67,89};       
-    for(int i=0;i<marks.length;i++){           
-        System.out.println(marks[i]);
-    }         
-                 //FOR EACH LOOP 
-                 int marks[]= {100,23,45,67,89}; 
-                 for(int elements:marks){
-                    System.out.println(elements);
-                 }*/
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter size of array");
+       int n/*(size)*/=sc.nextInt();
+       int a[]= new int[n];
+       for(int i=0;i<n;i++){
+        a[i]=sc.nextInt();
+       }
+       sc.close();
 
-                 //2-D ARRAY
-    int flats[][];
-    flats = new int[2][3];
-    
-    flats[0][0] = 101;
-    flats[0][1] = 102;
-    flats[0][2] = 103;
-    flats[1][0] = 104;
-    flats[1][1] = 105;
-    flats[1][2] = 106;
-    for(int i=0;i<flats.length;i++){
-        for(int j=0;j<flats[i].length;j++){
-      System.out.print(flats[i][j]);
-      System.out.print(" ");
-        }System.out.println("");
+       //PRINT LARGEST ELEMENT IN ARRAY
+    //    int largest=a[0];
+    //    for(int i=0;i<n;i++){
+    //     if(largest<a[i]){
+    //         largest=a[i];
+    //     }
+    //    }
+    //     System.out.println(largest);
+
+    //PRINT SECOND LARGEST ELEMENT IN ARRAY
+    /*BRUTE 
+    //at first we have to sort the array
+    int largest=a[n-1];
+    for(int i=n-2;i>=0;i--){
+        if(a[i]!=largest){
+            int sec_largest=a[i];
+        }
+    } and that's why by t.c becomes O(n+nlogn)*/
+
+    /*Better 
+    int largest=a[0];
+    int sec_largest=-1;
+    for(int i=0;i<n;i++){
+        if(largest<a[i]){
+            int t=largest;
+            largest=a[i];
+            sec_largest=t;
+        }
+    } this is not A COMPLETE code, but its T.C is O(2n)*/
+
+    //OPTIMAL
+    System.out.println("The second largest no is "+secondLargest(a, n));
+    System.out.println("The second smallest no is "+secondSmallest(a, n));
     }
-
-
-                  
-    }
-       
-       
 }
-
-       
-       
-       
-
-
